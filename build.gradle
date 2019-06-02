@@ -1,56 +1,18 @@
-plugins {
-    id "com.jfrog.bintray" version "1.8.4"
-    id 'maven-publish'
-}
-
 apply plugin: "java-library"
+apply from: "$rootDir/gradle/publish.gradle"
 
-bintray {
-    publications = ['mavenPublication']
-    pkg {
-        repo = 'jskele'
-        name = 'lib-values-package'
-        version {
-            name = '1.0'
-            desc = '1.0'
-            released  = new Date()
-        }
-    }
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.1'
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives sourcesJar
+wrapper {
+    gradleVersion = '5.4.1'
+    distributionType = Wrapper.DistributionType.ALL
 }
 
 repositories {
     mavenCentral()
     jcenter()
 }
+
 dependencies {
     compile(
             'com.google.guava:guava:27.0.1-jre',
     )
-}
-
-publishing {
-    publications {
-        mavenPublication(MavenPublication) {
-            from components.java
-            artifact sourcesJar {
-                classifier "sources"
-            }
-            groupId = 'org.jskele'
-            artifactId = 'lib-values'
-            version = '1.0'
-        }
-    }
 }
