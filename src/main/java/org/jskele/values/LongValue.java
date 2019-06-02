@@ -1,7 +1,5 @@
 package org.jskele.values;
 
-import com.google.common.base.Throwables;
-
 public abstract class LongValue extends ValueClass<Long> {
 
 	public LongValue(String string) {
@@ -15,8 +13,7 @@ public abstract class LongValue extends ValueClass<Long> {
 	public static <T extends LongValue> T create(Class<T> class_, Long value) {
 		try {
 			return class_.getConstructor(Long.class).newInstance(value);
-		} catch (Exception e) {
-			Throwables.throwIfUnchecked(e);
+		} catch (ReflectiveOperationException e) {
 			throw new IllegalStateException(e);
 		}
 	}

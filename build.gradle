@@ -5,14 +5,3 @@ wrapper {
     gradleVersion = '5.4.1'
     distributionType = Wrapper.DistributionType.ALL
 }
-
-repositories {
-    mavenCentral()
-    jcenter()
-}
-
-dependencies {
-    compile(
-            'com.google.guava:guava:27.0.1-jre',
-    )
-}
