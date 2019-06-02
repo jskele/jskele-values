@@ -1,4 +1,4 @@
-package org.jskele.libs.values;
+package org.jskele.values;
 
 import java.util.Arrays;
 
